@@ -1,0 +1,90 @@
+package javalab1;
+
+import java.util.Scanner;
+import java.text.DecimalFormat;
+
+
+public class JavaLab1 {
+
+ 
+    public static void main(String[] args) {
+    /* 
+        Programmer: Kyle Beliveau
+        Due Date:   Tuesday, February 6, 2018
+        project Description: This program gives the calculates and then  
+            displays the proper change for a customer 
+            
+    */
+        
+       Scanner keyboard = new Scanner(System.in);
+       DecimalFormat dollarFormat = new DecimalFormat("#0.00");
+        double billAmount = 0;
+        double paymentAmount = 0;
+        double returnAmount = 0;
+        double remainingAmount =0;
+        int num100s,num50s,num20s,num10s,num5s,num1s;
+        int numQuarters,numDimes,numNickels,numPennies;
+        
+        //Get Bill Amount From User
+        
+        System.out.println("Enter the amount owed: ");
+        billAmount = keyboard.nextDouble();
+        
+        //Get Payment Amount From User
+        System.out.println("Enter amount tendered: ");
+        paymentAmount = keyboard.nextDouble();
+        
+        //Calculate Amount to Return
+        returnAmount = paymentAmount - billAmount;
+        
+        //calculate Number of Each Type of Bill to be Returned
+        num100s = (int)returnAmount/100; //integer division
+        remainingAmount = returnAmount - num100s * 100; 
+       
+        num50s = (int)remainingAmount/50; //integer division
+        remainingAmount = remainingAmount - num50s * 50; 
+        
+        num20s = (int)remainingAmount/20; //integer division
+        remainingAmount= remainingAmount - num20s * 20; 
+        
+        num10s = (int)remainingAmount/10; //integer division
+        remainingAmount = remainingAmount - num10s * 10; 
+      
+        num5s = (int)remainingAmount/5; //integer division
+        remainingAmount = remainingAmount - num5s * 5; 
+        
+        num1s = (int)remainingAmount/1; //integer division
+        remainingAmount = remainingAmount - num1s * 1;
+        
+        //Calculate Number of Each Type of Coin to Return
+        remainingAmount = remainingAmount * 100; //converts to cents
+        numQuarters = (int)(remainingAmount / 25); //integer division  
+        remainingAmount = remainingAmount - numQuarters * 25;
+        numDimes = (int)remainingAmount/10; //integer division
+        remainingAmount = remainingAmount - numDimes * 10;
+        numNickels = (int)remainingAmount/5; //integer division
+        remainingAmount = remainingAmount - numDimes * 5;
+        numPennies = (int)remainingAmount/1;
+        remainingAmount = remainingAmount - numPennies * 1;
+        
+        //Display Change Summary
+        System.out.println("Amount owed: " + "$" 
+                + dollarFormat.format(billAmount));
+        System.out.println("Amount tendered: " + "$" 
+                + dollarFormat.format(paymentAmount));
+        System.out.println("Amount of change to return: "
+                + "$"+ dollarFormat.format(returnAmount));
+        System.out.println("Number of 100s: " + num100s);
+        System.out.println("Number of 50s: " + num50s);
+        System.out.println("Number of 20s: " + num20s);
+        System.out.println("Number of 10s: " + num10s);
+        System.out.println("Number of 5s: " + num5s);
+        System.out.println("Number of 1s: " + num1s);
+        System.out.println("Number of Quarters: " + numQuarters);
+        System.out.println("Number of Dimes: " + numDimes);
+        System.out.println("Number of Nickels: " + numNickels);
+        System.out.println("Number of Pennies: " + numPennies);
+
+    } // end main
+    
+} // end Lab1 class
