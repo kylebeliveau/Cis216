@@ -63,9 +63,10 @@ public class JavaLab1 {
         numDimes = (int)remainingAmount/10; //integer division
         remainingAmount = remainingAmount - numDimes * 10;
         numNickels = (int)remainingAmount/5; //integer division
-        remainingAmount = remainingAmount - numDimes * 5;
-        numPennies = (int)remainingAmount/1;
+        remainingAmount = remainingAmount - numNickels * 5;
+        numPennies = (int)remainingAmount/1; //integer division
         remainingAmount = remainingAmount - numPennies * 1;
+        
         
         //Display Change Summary
         System.out.println("Amount owed: " + "$" 
