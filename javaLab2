@@ -1,0 +1,39 @@
+package javalab2;
+import java.util.Scanner;
+import java.io.*;
+/**
+ * Kyle Beliveau Lab02
+ * 
+ */
+public class JavaLab2 {
+
+    public static void main(String[] args) {
+        
+    //Get vessel in distress data
+    System.out.println("Enter X coordinate of vessel in distress: ");
+        
+    System.out.println("Enter Y coordinate of vessel in distress: ");
+        
+    System.out.println("Enter number of people onboard the vessel in distress");
+    
+    //Display respone summary heading
+    System.out.println("US COAST GUARD");
+    System.out.println("Emergency Response Summary");
+    System.out.println("Location: [ " + xCoordVID + "," + yCoordVID + "]");
+    System.out.println("People aboard: " + numPeople);
+    System.out.println("Station "+" Station Name " + "Coordinates " 
+            + "Vessel Speed" + "Distance" + "Time");
+    
+    //Process each coast guard vessel
+    
+    //Get coast guard vessel data
+    
+    //Calculate distance to vessel in distress
+    
+    //Calculate travel time to vessel in distress
+    
+    //Display coast guard vessel summary information
+        
+    }
+    
+}
