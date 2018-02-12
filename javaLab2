@@ -1,28 +1,38 @@
 package javalab2;
 import java.util.Scanner;
 import java.io.*;
-/**
- * Kyle Beliveau Lab02
- * 
- */
+ 
+/* 
+        Programmer: Kyle Beliveau
+        Due Date:   Tuesday, Febuary 13, 2018
+        project Description: Determin how fast vessels from the rescue station 
+            in your area couls respond to emergency calls.
+        Project Number: 2
+*/
+   
+
 public class JavaLab2 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
+     Scanner keyboard = new Scanner(System.in);
+     int xCoordVID,yCoordVID,numPeople; 
+     
     //Get vessel in distress data
     System.out.println("Enter X coordinate of vessel in distress: ");
-        
+        xCoordVID = keyboard.nextInt();
     System.out.println("Enter Y coordinate of vessel in distress: ");
-        
+        yCoordVID = keyboard.nextInt();
     System.out.println("Enter number of people onboard the vessel in distress");
+        numPeople = keyboard.nextInt();
     
     //Display respone summary heading
     System.out.println("US COAST GUARD");
     System.out.println("Emergency Response Summary");
     System.out.println("Location: [ " + xCoordVID + "," + yCoordVID + "]");
     System.out.println("People aboard: " + numPeople);
-    System.out.println("Station "+" Station Name " + "Coordinates " 
-            + "Vessel Speed" + "Distance" + "Time");
+    System.out.println("Station " + "Station Name " + "Coordinates " 
+            + "Vessel Speed " + "Distance " + "Time ");
     
     //Process each coast guard vessel
     
@@ -33,7 +43,13 @@ public class JavaLab2 {
     //Calculate travel time to vessel in distress
     
     //Display coast guard vessel summary information
-        
+         = inFileSC.nextLine( ).toUpperCase( ).charAt(0);
+        inFileSC.close( );
+        System.out.println(" " +  + " .\N " + + " .\n " +  + ".\n " + );
+        System.out.printf(" %10d\n ", );
+        System.out.format("Double 1 was %3.1f\n", );
+        System.out.format("Name was %2s\n", );
+        System.out.format(" %-8cX\n " );
     }
     
 }
