@@ -1,0 +1,105 @@
+package javalab3;
+
+import java.util.Scanner;
+import java.io.*;
+
+/* 
+        Programmer: Kyle Beliveau
+        Due Date:   Tuesday, Febuary 27, 2018
+        project Description: maintain a repair billing for an airplain repair 
+            company.This will allow to creat a form that logs their work.
+        Project Number: 3    
+ */
+public class JavaLab3 {
+
+    public static void main(String[] args) throws IOException {
+        Scanner keyboard = new Scanner(System.in);
+        Scanner inFileSC;
+        String techName, choice;
+        String optionA = ("produce cost report");
+        String optionB = ("log client");
+        String clientName, dateOfService;
+        double amountDue, hours, hourlyRate;
+        //double totalHours, totalAmount;
+        hours = 0.0;
+        amountDue = 0.0;
+        //display totals
+        //totalHours = 0.0;
+        //totalAmount = 0.0;
+        hourlyRate = 42.50;
+        PrintWriter logFile;
+        FileWriter logFileFW;
+        //Get technician name
+        System.out.print("Enter technician name: ");
+        techName = keyboard.nextLine();
+
+        //Get Option to produce cost report or log client
+        System.out.print(techName + ":" + " What would you like to do? ");
+        System.out.println("Produce Cost Report or log Client? ");
+        choice = keyboard.nextLine();
+        while (!choice.equalsIgnoreCase(optionA)
+                && !choice.equalsIgnoreCase(optionB)) {
+            System.out.println("Produce Cost Report or log Client? ");
+            choice = keyboard.nextLine();
+        }
+
+        //Preform choice A or B
+        if (optionA.equals(choice)) {
+            //display heading report   
+            System.out.format("%40s\n", "Miracle aircraft repair");
+            System.out.format("%30s\n", "if the repair went right, it's is a miracle!");
+            System.out.format("%12s%-15s\n", "technician: ", techName);
+            System.out.format("%-16s%-10s%10s%15s\n", "Client", "Date of Service",
+                    "Hours", "Amount Due");
+            System.out.format("%s%s\n", "===================================================",
+                    "===================");
+            
+            //open tech file
+        inFileSC = new Scanner(new File("mikayla"));
+         for ( int cnt = 0; cnt <1; cnt++){
+         clientName = inFileSC.nextLine();
+         dateOfService = inFileSC.nextLine();
+         inFileSC.next( ); // ignor
+         hours = inFileSC.nextDouble();
+         //amountDue = inFileSC.nextDouble();
+        System.out.print(clientName);
+        System.out.println(dateOfService);
+        System.out.println(hours);
+        //System.out.println(amountDue);
+        //System.out.format("%-16s%-10s%4.2f%4.2f\n", clientName, dateOfService, hours, amountDue);
+          }
+            inFileSC.close();
+
+            //System.out.format("%s%s\n", "===================================================",
+            //        "===================");
+            //display totals
+            //System.out.format("Totals: ",totalHours,totalAmount)
+
+        }
+
+        if (optionB.equals(choice)) {
+            //append file    
+            logFileFW = new FileWriter(techName, true);
+            logFile = new PrintWriter(logFileFW);
+
+            //log file
+            System.out.println("enter client name: ");
+            clientName = keyboard.nextLine();
+            logFile.println(clientName);
+            System.out.println("Enter date of service(mm/dd/year): ");
+            dateOfService = keyboard.nextLine();
+            logFile.println(dateOfService);
+            System.out.println("How many hours spent");
+            hours = keyboard.nextDouble();
+            logFile.println(hours);
+            System.out.println("Amount Due");
+            amountDue = hours * hourlyRate;
+            System.out.println(amountDue);
+            logFile.format("%8.3f", amountDue);
+            logFile.close();
+
+        }
+
+    }// end of main
+
+}// end of class
