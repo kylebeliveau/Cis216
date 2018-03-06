@@ -1,0 +1,37 @@
+package javaapplication1;
+import java.io.*;
+import java.util.Scanner;
+
+public class JavaApplication1 {
+
+    public static void main(String[] args) throws FileNotFoundException {
+        int score;
+        char grade; 
+        char answer;
+        Scanner k = new Scanner(System.in);
+        Scanner inFileSC;
+        
+       // System.out.println("enter grade");
+       // score = k.nextInt();
+       
+       inFileSC = new Scanner(new File("student.txt"));
+        for ( int cnt = 0; cnt <1; cnt++){
+            answer = inFileSC.nextChar();
+            System.out.println(answer);
+        }
+       
+         if (score >= 90) {
+            grade = 'A';
+        } else if (score >= 80) {
+            grade = 'B';
+        } else if (score >= 70) {
+            grade = 'C';
+        } else if (score >= 60) {
+            grade = 'D';
+        } else {
+            grade = 'F';
+        }
+          System.out.printf ("The grade is %c.%n", grade);
+    }
+    
+}
