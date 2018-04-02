@@ -1,16 +1,247 @@
-Sour Patch Kids
-10
-4.50
-2
-Swedish Fish
-10
-4.50
-4
-Airheads
-20
-0.50
-5
-Gummy Bears
-5
-1.00
-6
+package javalab7;
+import java.util.Scanner;
+import java.io.*;
+
+/******* 
+       Programmer: Kyle Beliveau
+       Due Date:   Tuesday, April 3, 2018
+       project Description:Company makes different kinds of candy. you create 
+                            a program that allows users through a menu to 
+                            lookup product information,add quantities, sell 
+                            products, and change prices.
+                            
+        Project Number: 7
+ ******/
+
+public class JavaLab7 {
+
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+        
+        String optionA = ("Lookup Product");
+        String optionB = ("Increase Quantity");
+        String optionC = ("Decrease Quantity");
+        String optionD = ("Change Price");
+        String choice;
+        Scanner lookUpSC;
+   
+        String productName = null;
+        String updateStock = null;
+        int packagePerBox = 0;
+        int inStock = 0;
+        int addStock = 0;
+        int minusStock = 0;
+        double pricePerOne = 0;
+        double changePrice = 0;
+        
+        Scanner k = new Scanner(System.in);
+        System.out.println("Lookup Product?");
+        System.out.println("Increase Quantity?");
+        System.out.println("Decrease Quantity?");
+        System.out.println("Change Price?");
+        System.out.println("-------------------------------");
+        choice = k.nextLine();
+        while (!choice.equalsIgnoreCase(optionA)
+                && !choice.equalsIgnoreCase(optionB)
+                && !choice.equalsIgnoreCase(optionC)
+                && !choice.equalsIgnoreCase(optionD)) {
+            System.out.println("-------------------------------");
+            System.out.println("Lookup Product?");
+            System.out.println("Increase Quantity?");
+            System.out.println("Decrease Quantity?");
+            System.out.println("Change Price?");
+            System.out.println("-------------------------------");
+            choice = k.nextLine();
+        }
+        
+      lookUpSC = new Scanner(new File("candy"));    
+        if (optionA.equalsIgnoreCase(choice)) {
+            
+          ProformChoiceA(lookUpSC,productName,packagePerBox,inStock,pricePerOne);
+        }
+
+        if (optionB.equalsIgnoreCase(choice)) {
+          ProformChoiceB(lookUpSC,updateStock,productName,packagePerBox,pricePerOne,inStock,addStock);
+        }
+         if (optionC.equalsIgnoreCase(choice)) {
+          ProformChoiceC(lookUpSC,updateStock,productName,packagePerBox,pricePerOne,inStock,minusStock);
+        }
+        if (optionD.equalsIgnoreCase(choice)) {
+          ProformChoiceD(lookUpSC,updateStock,productName,packagePerBox,pricePerOne,inStock,changePrice);
+        }       
+        
+       lookUpSC.close(); 
+       
+    }//end main       
+    
+    public static void ProformChoiceA(Scanner lookUpSC,String productName,
+            int packagePerBox,int inStock,double pricePerOne) 
+            throws FileNotFoundException {
+       
+        
+        lookUpSC = new Scanner(new File("candy"));
+        while (lookUpSC.hasNext()){
+            productName = lookUpSC.nextLine();
+            packagePerBox = lookUpSC.nextInt();
+            pricePerOne = lookUpSC.nextDouble();
+            inStock = lookUpSC.nextInt();
+            lookUpSC.nextLine();
+    
+           System.out.format("%-20s%-10d%5.2f%10d\n", productName,packagePerBox,
+                pricePerOne, inStock);
+        } 
+        lookUpSC.close();
+    }// end of choice A
+
+    public static void ProformChoiceB(Scanner lookUpSC,String updateStock,String productName,
+            int packagePerBox,double pricePerOne,int inStock,int addStock)
+            throws FileNotFoundException, IOException {
+        Scanner k = new Scanner(System.in);
+        lookUpSC = new Scanner(new File("candy"));
+        PrintWriter logFile;
+        FileWriter logFileFW;
+        
+        while (lookUpSC.hasNext()){
+            productName = lookUpSC.nextLine();
+            packagePerBox = lookUpSC.nextInt();
+            pricePerOne = lookUpSC.nextDouble();
+            inStock = lookUpSC.nextInt();
+            lookUpSC.nextLine();
+            System.out.format("%-20s%-10d%5.2f%10d\n", productName,packagePerBox,
+                pricePerOne, inStock);
+        }
+        System.out.println("-----------------------------------------"); 
+        System.out.print("Enter product to update: ");
+            updateStock = k.nextLine(); 
+        System.out.println("-----------------------------------------");
+        while (lookUpSC.hasNext()){
+            productName = lookUpSC.nextLine();
+            packagePerBox = lookUpSC.nextInt();
+            pricePerOne = lookUpSC.nextDouble();
+            inStock = lookUpSC.nextInt();
+            lookUpSC.nextLine();
+            System.out.format("%-20s%-10d%5.2f%10d\n", productName,packagePerBox,
+                pricePerOne, inStock);   
+        }
+            
+        if(productName.equalsIgnoreCase(updateStock)){ 
+            
+            System.out.print("how many would you like to increase: ");
+            addStock = k.nextInt();
+            inStock = inStock + addStock;
+
+            System.out.format("%-20s%-10d%5.2f%10d\n", productName,packagePerBox,
+                pricePerOne, inStock);
+        
+        logFileFW = new FileWriter("candy", true);
+        logFile = new PrintWriter(logFileFW);
+        logFile.println(productName);
+        logFile.println(packagePerBox);
+        logFile.println(pricePerOne);
+        logFile.println(inStock);
+        }
+
+    }// end of choice B
+    
+    
+    public static void ProformChoiceC(Scanner lookUpSC,String updateStock,String productName,
+            int packagePerBox,double pricePerOne,int inStock,int minusStock)
+            throws FileNotFoundException, IOException {
+        Scanner k = new Scanner(System.in);
+        lookUpSC = new Scanner(new File("candy"));
+        PrintWriter logFile;
+        FileWriter logFileFW;
+        
+        while (lookUpSC.hasNext()){
+            productName = lookUpSC.nextLine();
+            packagePerBox = lookUpSC.nextInt();
+            pricePerOne = lookUpSC.nextDouble();
+            inStock = lookUpSC.nextInt();
+            lookUpSC.nextLine();
+            System.out.format("%-20s%-10d%5.2f%10d\n", productName,packagePerBox,
+                pricePerOne, inStock);
+        }
+        System.out.println("-----------------------------------------"); 
+        System.out.print("Enter product to update: ");
+            updateStock = k.nextLine(); 
+        System.out.println("-----------------------------------------");
+        while (lookUpSC.hasNext()){
+            productName = lookUpSC.nextLine();
+            packagePerBox = lookUpSC.nextInt();
+            pricePerOne = lookUpSC.nextDouble();
+            inStock = lookUpSC.nextInt();
+            lookUpSC.nextLine();
+            System.out.format("%-20s%-10d%5.2f%10d\n", productName,packagePerBox,
+                pricePerOne, inStock);   
+        }
+          
+        if(productName.equalsIgnoreCase(updateStock)){ 
+            
+            System.out.print("how many would you like to decrease: ");
+            minusStock = k.nextInt();
+            inStock = inStock - minusStock;
+
+            System.out.format("%-20s%-10d%5.2f%10d\n", productName,packagePerBox,
+                pricePerOne, inStock);
+            
+        logFileFW = new FileWriter("candy", true);
+        logFile = new PrintWriter(logFileFW);
+        logFile.println(productName);
+        logFile.println(packagePerBox);
+        logFile.println(pricePerOne);
+        logFile.println(inStock);
+        }
+        
+    }// end of choice C
+   
+    public static void ProformChoiceD(Scanner lookUpSC,String updateStock,String productName,
+            int packagePerBox,double pricePerOne,int inStock,double changePrice)
+            throws FileNotFoundException, IOException {
+        Scanner k = new Scanner(System.in);
+        lookUpSC = new Scanner(new File("candy"));
+        PrintWriter logFile;
+        FileWriter logFileFW;
+        
+        while (lookUpSC.hasNext()){
+            productName = lookUpSC.nextLine();
+            packagePerBox = lookUpSC.nextInt();
+            pricePerOne = lookUpSC.nextDouble();
+            inStock = lookUpSC.nextInt();
+            lookUpSC.nextLine();
+            System.out.format("%-20s%-10d%5.2f%10d\n", productName,packagePerBox,
+                pricePerOne, inStock);
+        }
+        System.out.println("-----------------------------------------"); 
+        System.out.print("Enter product to update: ");
+            updateStock = k.nextLine(); 
+        System.out.println("-----------------------------------------");
+        
+        while (lookUpSC.hasNext()){
+            productName = lookUpSC.nextLine();
+            packagePerBox = lookUpSC.nextInt();
+            pricePerOne = lookUpSC.nextDouble();
+            inStock = lookUpSC.nextInt();
+            lookUpSC.nextLine();
+            System.out.format("%-20s%-10d%5.2f%10d\n", productName,packagePerBox,
+                pricePerOne, inStock);  
+          
+           
+        }
+            if(productName.equalsIgnoreCase(updateStock)){ 
+            System.out.print("Enter new price: ");
+            pricePerOne = k.nextDouble();  
+            System.out.format("%-20s%-10d%5.2f%10d\n", productName,packagePerBox,
+                pricePerOne, inStock);  
+        logFileFW = new FileWriter("candy", true);
+        logFile = new PrintWriter(logFileFW);
+        logFile.println(productName);
+        logFile.println(packagePerBox);
+        logFile.println(pricePerOne);
+        logFile.println(inStock);
+            
+        }  
+    }// end of choice D
+    
+}// end class javaLab7
+
+
+
